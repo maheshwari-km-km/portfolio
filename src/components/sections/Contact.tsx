@@ -165,6 +165,15 @@ const Contact: React.FC = () => {
                 <h3 className="text-xl font-semibold mb-6 text-portfolio-darkPurple">
                   Send a Message
                 </h3>
+                <div className="mb-4">
+                  <label className="block text-gray-700 text-sm font-medium mb-1" htmlFor="to-email">To</label>
+                  <Input
+                    id="to-email"
+                    value="maheshwari.km.km@gmail.com"
+                    disabled
+                    className="border-gray-300 bg-gray-100 text-gray-500 cursor-not-allowed"
+                  />
+                </div>
                 
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <div className="transform transition-all duration-300 hover:translate-y-[-2px]">
@@ -174,7 +183,7 @@ const Contact: React.FC = () => {
                       value={formData.name}
                       onChange={handleChange}
                       required
-                      className="border-gray-300 focus:border-portfolio-purple focus:ring-portfolio-purple bg-gray-50"
+                      className="focus:ring-0 ring-0 bg-gray-50 focus:outline-none"
                     />
                   </div>
                   
@@ -186,7 +195,7 @@ const Contact: React.FC = () => {
                       value={formData.email}
                       onChange={handleChange}
                       required
-                      className="border-gray-300 focus:border-portfolio-purple focus:ring-portfolio-purple bg-gray-50"
+                      className="focus:ring-0 ring-0 bg-gray-50 focus:outline-none"
                     />
                   </div>
                   
@@ -197,7 +206,7 @@ const Contact: React.FC = () => {
                       value={formData.subject}
                       onChange={handleChange}
                       required
-                      className="border-gray-300 focus:border-portfolio-purple focus:ring-portfolio-purple bg-gray-50"
+                      className="focus:ring-0 ring-0 bg-gray-50 focus:outline-none"
                     />
                   </div>
                   
@@ -209,7 +218,7 @@ const Contact: React.FC = () => {
                       onChange={handleChange}
                       rows={5}
                       required
-                      className="border-gray-300 focus:border-portfolio-purple focus:ring-portfolio-purple bg-gray-50"
+                      className="focus:ring-0 ring-0 bg-gray-50 focus:outline-none"
                     />
                   </div>
                   

@@ -1,6 +1,7 @@
-import React from 'react';
-import { BriefcaseIcon, GraduationCapIcon } from 'lucide-react';
+import React, { useState } from 'react';
+import { BriefcaseIcon, GraduationCapIcon, BookOpenIcon, BriefcaseBusinessIcon } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
 interface TimelineItem {
   id: number;
@@ -8,7 +9,7 @@ interface TimelineItem {
   company: string;
   period: string;
   description: string;
-  type: 'work' | 'education';
+  type: 'work' | 'education' | 'course' | 'internship';
 }
 
 const timelineData: TimelineItem[] = [
@@ -29,6 +30,14 @@ const timelineData: TimelineItem[] = [
     type: 'work',
   },
   {
+    id: 2.1,
+    title: 'Junior Software Engineer Intern',
+    company: 'Kenpath Technologies Pvt. Ltd',
+    period: 'FEB 2024 - OCT 2024',
+    description: 'Contributed to backend and UI development across internal tools and customer-facing platforms.Assisted in debugging and improving existing modules using Angular and Node.js.Participated in code reviews, daily stand-ups, and sprint planning.',
+    type: 'internship',
+  },
+  {
     id: 3,
     title: 'Junior Software Engineer',
     company: 'Yorosis Technologies Pvt. Ltd',
@@ -38,43 +47,66 @@ const timelineData: TimelineItem[] = [
   },
   {
     id: 4,
-    title: 'Software Engineer Intern',
-    company: 'RND SOFTECH PRIVATE LIMITED',
-    period: 'JAN 2022 - FEB 2022',
-    description: 'Worked on a project to develop a web application for a client using Angular, TypeScript, and Node.js. Collaborated with cross-functional teams to deliver high-quality software solutions. ',
-    type: 'education',
+    title: 'Java Full Stack Development',
+    company: 'JSpiders: Java Training Institute, Bangalore',
+    period: 'OCT 2022 - MAY 2023',
+    description: 'Enrolled in a well-regarded program for Java Full Stack and obtaining expertise in Java-based software development.',
+    type: 'course',
   },
   {
     id: 5,
-    title: 'WEB DEVELOPMENT INTERN',
-    company: 'HACKOWLS SOFTWARE LLP',
-    period: 'DEC 2021 - JAN 2022',
-    description: 'Worked on a project to develop a web application for a client using Angular, TypeScript, and Node.js. Collaborated with cross-functional teams to deliver high-quality software solutions. ', 
-    type: 'education',
+    title: 'Software Engineer Intern',
+    company: 'RND SOFTECH PRIVATE LIMITED',
+    period: 'JAN 2022 - FEB 2022',
+    description: 'Developed a full-stack web application as part of a team project, implementing the frontend with Angular and the backend using Node.js and Express. Integrated REST APIs, managed basic authentication, and deployed the solution for internal demo purposes.',
+    type: 'internship',
   },
   {
     id: 6,
-    title: 'BSc in Computer Science',
-    company: 'State University',
-    period: '2011 - 2015',
-    description: 'Studied computer science fundamentals, data structures, algorithms, and web development basics.',
+    title: 'WEB DEVELOPMENT INTERN',
+    company: 'HACKOWLS SOFTWARE LLP',
+    period: 'DEC 2021 - JAN 2022',
+    description: 'Built and deployed a basic website. Learned client communication, requirement gathering, and technical implementation of simple UI/UX solutions.', 
+    type: 'internship',
+  },
+  {
+    id: 7,
+    title: 'Bachelor of Science in Information Technology',
+    company: 'bharathiar university',
+    period: '2019 - 2022',
+    description: 'Studied computer science fundamentals, data structures, algorithms, and web development basics , Developed a College Management System as a team project (Jul 2021 – Sep 2021), a web application built using Java, Servlets, JSP, and MySQL. The system managed student records, attendance, faculty modules, and administrative tasks through a secure login-based interface.',
     type: 'education',
   },
 ];
 
 const TimelineItem: React.FC<{ item: TimelineItem; isLast: boolean }> = ({ item, isLast }) => {
-  const Icon = item.type === 'work' ? BriefcaseIcon : GraduationCapIcon;
+  const getIcon = () => {
+    switch (item.type) {
+      case 'work':
+        return BriefcaseIcon;
+      case 'education':
+        return GraduationCapIcon;
+      case 'course':
+        return BookOpenIcon;
+      case 'internship':
+        return BriefcaseBusinessIcon;
+      default:
+        return BriefcaseIcon;
+    }
+  };
+  
+  const Icon = getIcon();
   
   return (
     <div className="relative">
       <div className="flex items-start gap-3 sm:gap-4">
         <div className="flex flex-col items-center flex-shrink-0">
-          <div className="bg-portfolio-purple text-white p-2 rounded-full">
+          <div className="bg-portfolio-purple/80 text-white p-2 rounded-full">
             <Icon size={16} className="sm:w-5 sm:h-5" />
           </div>
           {!isLast && <div className="w-0.5 h-full bg-white/30 mt-2"></div>}
         </div>
-        <Card className="w-full mb-6 sm:mb-8 glass-card">
+        <Card className="w-full mb-6 sm:mb-8 glass-card bg-white/5 backdrop-blur-sm">
           <CardHeader className="pb-2 p-4 sm:p-6">
             <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2">
               <div className="flex-1">
@@ -93,7 +125,22 @@ const TimelineItem: React.FC<{ item: TimelineItem; isLast: boolean }> = ({ item,
   );
 };
 
+const tabMap = [
+  { value: 'work', label: 'Work' },
+  { value: 'internship', label: 'Internships' },
+  { value: 'course', label: 'Courses' },
+  { value: 'education', label: 'Education' },
+  { value: 'all', label: 'All' },
+];
+
 const Experience: React.FC = () => {
+  const [activeTab, setActiveTab] = useState('work');
+
+  const filteredTimelineData = timelineData.filter(item => {
+    if (activeTab === 'all') return true;
+    return item.type === activeTab;
+  });
+
   return (
     <section 
       id="experience" 
@@ -110,13 +157,30 @@ const Experience: React.FC = () => {
         <p className="text-lg sm:text-xl text-gray-300 mb-8 sm:mb-12 max-w-3xl mx-auto text-center px-4">
           My professional journey and educational background
         </p>
+
+        <div className="flex justify-center mb-8">
+          <Tabs defaultValue={activeTab} className="w-full max-w-3xl mx-auto">
+            <TabsList className="grid grid-cols-3 md:grid-cols-5 mb-12 bg-white/10 backdrop-blur-md h-[5rem] md:h-auto">
+              {tabMap.map(tab => (
+                <TabsTrigger
+                  key={tab.value}
+                  value={tab.value}
+                  onClick={() => setActiveTab(tab.value)}
+                  className="data-[state=active]:bg-portfolio-purple data-[state=active]:text-white text-gray-300"
+                >
+                  {tab.label}
+                </TabsTrigger>
+              ))}
+            </TabsList>
+          </Tabs>
+        </div>
         
         <div className="max-w-3xl mx-auto mt-8 sm:mt-12">
-          {timelineData.map((item, index) => (
+          {filteredTimelineData.map((item, index) => (
             <TimelineItem 
               key={item.id} 
               item={item} 
-              isLast={index === timelineData.length - 1} 
+              isLast={index === filteredTimelineData.length - 1} 
             />
           ))}
         </div>

@@ -152,7 +152,7 @@ const Skills: React.FC = () => {
     <section 
       id="skills" 
       ref={sectionRef}
-      className="py-24 relative bg-gradient-to-r from-[#14203a] via-black to-[#020b21]"
+      className="py-4 relative bg-gradient-to-r from-[#14203a] via-black to-[#020b21]"
     >
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <div className="absolute animate-blob-1 opacity-30 top-1/4 left-1/4 w-72 h-72 bg-portfolio-purple/20 rounded-full filter blur-xl"></div>
@@ -160,8 +160,8 @@ const Skills: React.FC = () => {
       </div>
       
       <div className="section-container relative z-10">
-        <div className="text-center mb-16">
-          <h2 ref={titleRef} className="section-title text-center text-white text-shadow mb-4">
+        <div className="text-center mb-2">
+          <h2 ref={titleRef} className="section-title text-center text-white text-shadow mb-2">
             <span className="bg-gradient-to-r from-portfolio-teal to-portfolio-purple text-transparent bg-clip-text">Skills & Expertise</span>
           </h2>
           <p ref={subtitleRef} className="section-subtitle text-center text-gray-200 text-shadow">
@@ -169,13 +169,13 @@ const Skills: React.FC = () => {
           </p>
         </div>
         
-        <div ref={cardsRef} className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div ref={cardsRef} className="grid md:grid-cols-2 lg:grid-cols-3 gap-2">
           {skillsData.map((category, categoryIndex) => (
             <Card 
               key={category.id} 
               className="skill-card glass-card card-hover"
             >
-              <CardContent className="p-6">
+              <CardContent className="p-2">
                 <h3 className="text-2xl font-semibold mb-6 text-white text-shadow bg-gradient-to-r from-portfolio-teal to-portfolio-purple text-transparent bg-clip-text">
                   {category.title}
                 </h3>
