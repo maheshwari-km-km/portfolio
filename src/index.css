@@ -1,0 +1,398 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700;800&family=Montserrat:wght@300;400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 240 10% 3.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+
+    --primary: 263 64% 63%;
+    --primary-foreground: 263 10% 98%;
+
+    --secondary: 216 12% 96.1%;
+    --secondary-foreground: 240 10% 3.9%;
+
+    --muted: 216 12% 96.1%;
+    --muted-foreground: 240 3.7% 46.1%;
+
+    --accent: 263 64% 63%;
+    --accent-foreground: 240 10% 3.9%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --ring: 263 64% 63%;
+
+    --radius: 0.75rem;
+  }
+
+  .dark {
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 263 64% 63%;
+    --primary-foreground: 263 10% 98%;
+
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
+
+    --accent: 263 64% 63%;
+    --accent-foreground: 0 0% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 263 64% 63%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+  }
+
+  body {
+    @apply bg-background text-foreground font-montserrat;
+    overflow-x: hidden;
+    width: 100%;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-poppins font-bold;
+  }
+}
+
+.section-container {
+  @apply w-full max-w-7xl mx-auto px-4 py-12 sm:py-16 sm:px-6 lg:px-8 relative z-10;
+}
+
+.section-title {
+  @apply text-2xl sm:text-3xl md:text-5xl font-bold text-white mb-6 sm:mb-8 font-poppins tracking-tight;
+}
+
+.section-subtitle {
+  @apply text-lg sm:text-xl text-gray-200 mb-8 sm:mb-12 max-w-3xl mx-auto;
+}
+
+/* Background overlay for sections with background images */
+.bg-overlay {
+  @apply absolute inset-0 bg-black/60 backdrop-blur-sm;
+}
+
+/* Glass card effect */
+.glass-card {
+  @apply bg-black/30 backdrop-blur-md border border-white/20 rounded-xl shadow-xl hover:bg-black/40 transition-all duration-500;
+}
+
+/* Mobile-first responsive utilities - Enhanced */
+@media (max-width: 640px) {
+  .section-container {
+    @apply px-3 py-6;
+  }
+  
+  .section-title {
+    @apply text-xl mb-3;
+  }
+  
+  .section-subtitle {
+    @apply text-sm mb-4;
+  }
+  
+  /* Prevent horizontal overflow */
+  * {
+    max-width: 100vw;
+    overflow-x: hidden;
+  }
+  
+  /* Mobile container fixes */
+  .container {
+    @apply px-3;
+    max-width: 100%;
+  }
+}
+
+/* Prevent any horizontal scrolling */
+.overflow-x-hidden {
+  overflow-x: hidden !important;
+}
+
+/* Animation keyframes */
+@keyframes scale-in {
+  0% {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.animate-scale-in {
+  animation: scale-in 0.3s ease-out forwards;
+}
+
+/* Perspective transformations */
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.transform-3d {
+  transform-style: preserve-3d;
+}
+
+.rotate-y-10 {
+  transform: rotateY(10deg);
+}
+
+.hover-rotate-y {
+  @apply transition-transform duration-300;
+}
+
+.hover-rotate-y:hover {
+  transform: rotateY(10deg);
+}
+
+/* Card flip animations */
+.card-flip-container {
+  perspective: 1000px;
+}
+
+.card-flip {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.card-flip-container:hover .card-flip {
+  transform: rotateY(180deg);
+}
+
+.card-flip-front,
+.card-flip-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+}
+
+.card-flip-back {
+  transform: rotateY(180deg);
+}
+
+@layer utilities {
+  .animate-blob-1 {
+    animation: blob-1 15s infinite linear alternate;
+  }
+  .animate-blob-2 {
+    animation: blob-2 10s infinite linear alternate;
+  }
+  .animate-bounce-slow {
+    animation: bounce 2s infinite;
+  }
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  /* GSAP-inspired animations for use with utility classes */
+  .animate-from-bottom {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  
+  .animate-from-left {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+  
+  .animate-from-right {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+  
+  .animate-scale {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  
+  .animate-fade {
+    opacity: 0;
+  }
+  
+  /* Mobile-specific utilities */
+  @media (max-width: 640px) {
+    .mobile-text-sm {
+      @apply text-sm;
+    }
+    
+    .mobile-px-2 {
+      @apply px-2;
+    }
+    
+    .mobile-py-1 {
+      @apply py-1;
+    }
+  }
+}
+
+@keyframes blob-1 {
+  0% { transform: translateY(-50px) rotate(0deg) scale(1); }
+  50% { transform: translateY(50px) rotate(180deg) scale(1.2); }
+  100% { transform: translateY(-50px) rotate(360deg) scale(1); }
+}
+
+@keyframes blob-2 {
+  0% { transform: translateX(-50px) rotate(0deg) scale(0.9); }
+  50% { transform: translateX(50px) rotate(-180deg) scale(1.1); }
+  100% { transform: translateX(-50px) rotate(-360deg) scale(0.9); }
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+  100% { transform: translateY(0px); }
+}
+
+/* Gradient text */
+.text-gradient {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-portfolio-teal via-portfolio-purple to-portfolio-pink;
+}
+
+/* Button hover effects */
+.btn-hover-effect {
+  @apply transition-all duration-500 hover:scale-105 hover:shadow-lg;
+}
+
+/* Card hover effects */
+.card-hover {
+  @apply transition-all duration-500 hover:shadow-xl hover:shadow-portfolio-purple/10 hover:translate-y-[-5px];
+}
+
+/* Text shadow for better contrast */
+.text-shadow {
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Highlight text */
+.highlight {
+  @apply relative inline-block;
+}
+
+.highlight::before {
+  content: '';
+  @apply absolute w-full h-1/3 bg-portfolio-purple/30 bottom-0 left-0 z-[-1] transform transition-all duration-300;
+}
+
+.highlight:hover::before {
+  @apply h-full;
+}
+
+/* 3D floating effect */
+.float-3d {
+  transform-style: preserve-3d;
+  transition: transform 0.1s ease;
+}
+
+/* Modern button styles */
+.btn-modern {
+  @apply relative overflow-hidden bg-gradient-to-r from-portfolio-purple to-portfolio-teal text-white
+    font-medium py-3 px-8 rounded-lg transform transition-all duration-300 
+    hover:scale-105 hover:shadow-lg hover:shadow-portfolio-purple/20 active:scale-95;
+}
+
+.btn-modern::before {
+  content: '';
+  @apply absolute inset-0 bg-white opacity-0 transition-opacity duration-300;
+}
+
+.btn-modern:hover::before {
+  @apply opacity-20;
+}
+
+/* Animated border effect */
+.animated-border {
+  position: relative;
+}
+
+.animated-border::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(to right, var(--portfolio-teal), var(--portfolio-purple));
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.4s ease-out;
+}
+
+.animated-border:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* Scroll indicator */
+.scroll-indicator {
+  position: absolute;
+  bottom: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 30px;
+  height: 50px;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  border-radius: 15px;
+}
+
+.scroll-indicator::before {
+  content: '';
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  width: 6px;
+  height: 6px;
+  margin-left: -3px;
+  background-color: white;
+  border-radius: 50%;
+  animation: scroll-indicator 2s infinite;
+}
+
+@keyframes scroll-indicator {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(26px);
+  }
+}
