@@ -1,4 +1,3 @@
-
 import React, { useRef, useEffect } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -102,12 +101,15 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, index }) => {
               Code
             </a>
           </Button>
-          <Button variant="default" size="sm" className="bg-portfolio-purple hover:bg-portfolio-purple/90 text-xs sm:text-sm" asChild>
-            <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center">
-              <ExternalLink size={14} className="mr-2" />
-              Live Demo
-            </a>
-          </Button>
+          <div className="flex flex-col items-center gap-1">
+            <Button variant="default" size="sm" className="bg-gray-500 hover:bg-gray-500 cursor-not-allowed text-xs sm:text-sm" disabled>
+              <span className="flex items-center justify-center">
+                <ExternalLink size={14} className="mr-2" />
+                Live Demo
+              </span>
+            </Button>
+            <span className="text-xs text-gray-400 text-center">Coming Soon - Needs to Deploy</span>
+          </div>
         </div>
       </CardContent>
     </Card>
