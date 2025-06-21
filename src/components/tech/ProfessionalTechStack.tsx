@@ -12,7 +12,6 @@ const techStackData = [
     technologies: [
       { name: 'React', color: '#61DAFB', position: [-4, 2, 0] },
       { name: 'Angular', color: '#DD0031', position: [-2, 2, 0] },
-      { name: 'Vue', color: '#4FC08D', position: [0, 2, 0] },
       { name: 'TypeScript', color: '#3178C6', position: [2, 2, 0] },
       { name: 'JavaScript', color: '#F7DF1E', position: [4, 2, 0] }
     ]

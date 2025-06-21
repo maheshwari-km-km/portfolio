@@ -7,7 +7,6 @@ import { useIsMobile } from '@/hooks/use-mobile';
 const techStack = [
   { name: 'React', color: '#61DAFB', icon: '⚛️', category: 'Frontend' },
   { name: 'Angular', color: '#DD0031', icon: '🅰️', category: 'Frontend' },
-  { name: 'Vue', color: '#4FC08D', icon: '🔷', category: 'Frontend' },
   { name: 'TypeScript', color: '#3178C6', icon: '📘', category: 'Language' },
   { name: 'JavaScript', color: '#F7DF1E', icon: '📜', category: 'Language' },
   { name: 'Node.js', color: '#339933', icon: '🟢', category: 'Backend' },
