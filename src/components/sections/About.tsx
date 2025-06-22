@@ -59,7 +59,7 @@ const About: React.FC = () => {
                 <p className="text-base sm:text-lg text-gray-200 leading-relaxed mb-4">
                   I bring strong technical skills, attention to detail, and a user-first mindset to every project. I specialize in building responsive, scalable web applications with clean and maintainable code.
                   In addition to my full-time roles, I've also worked on various freelance projects, helping clients build customized solutions and grow their digital presence. I enjoy continuously learning, improving my craft, and taking on new development challenges.
-              </p>
+                </p>
                 {/* <p className="text-base sm:text-lg text-gray-200 leading-relaxed">
                   When I'm not coding, you can find me contributing to open-source projects, 
                   writing technical articles, and mentoring junior developers.
